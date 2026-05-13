@@ -1,23 +1,28 @@
-program = input("Enter program name: ")
+program = "PROGA"
 
-start = int(input("Enter starting address: "), 16)
+start = int("1000", 16)
 
-extdef = input("Enter EXTDEF symbols separated by space: ").split()
+extdef = ["ALPHA", "BETA"]
 
-extref = input("Enter EXTREF symbols separated by space: ").split()
+extref = ["X", "Y", "Z"]
 
-n = int(input("Enter number of statements: "))
+statements = [
+    ["FIRST", "STL"],
+    ["ALPHA", "LDA"],
+    ["BETA", "ADD"],
+    ["END", "RSUB"]
+]
+
+n = len(statements)
 
 locctr = start
 
 symtab = {}
 
-for i in range(n):
-    line = input().split()
+for line in statements:
 
     if len(line) == 2:
         label = line[0]
-
         symtab[label] = locctr
 
     locctr += 3

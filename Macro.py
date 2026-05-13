@@ -2,22 +2,26 @@ mnt = {}
 
 mdt = []
 
-print("Enter Macro Definition")
+# Hardcoded Macro Definition
+macro = "INCR"
 
-macro = input("Macro Name: ")
+params = ["&ARG1", "&ARG2"]
 
-params = input("Parameters: ").split(',')
+macro_body = [
+    "LDA &ARG1",
+    "ADD &ARG2",
+    "STA &ARG1"
+]
 
-n = int(input("Enter number of lines in macro body: "))
-
-for i in range(n):
-    line = input()
+# Build MDT
+for line in macro_body:
 
     for j in range(len(params)):
         line = line.replace(params[j], "?" + str(j + 1))
 
     mdt.append(line)
 
+# Store in MNT
 mnt[macro] = 0
 
 print("\nMNT")
@@ -28,9 +32,8 @@ print("\nMDT")
 for line in mdt:
     print(line)
 
-print("\nEnter Macro Call")
-
-call = input().split()
+# Hardcoded Macro Call
+call = ["INCR", "NUM1,NUM2"]
 
 actual = call[1].split(',')
 

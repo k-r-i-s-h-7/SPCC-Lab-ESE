@@ -1,30 +1,30 @@
-pname = input("Enter program name: ")
+# H/T/E Record and Symbol Table Generation
 
-start = int(input("Enter starting address in hex: "), 16)
-
-length = int(input("Enter program length in hex: "), 16)
-
-n = int(input("Enter number of symbols: "))
-
-symtab = {}
-
-for i in range(n):
-    sym = input("Enter symbol name: ")
-
-    addr = int(input("Enter symbol address in hex: "), 16)
-
-    symtab[sym] = addr
-
+pname = "COPY"
+start = 0x1000
+length = 0x0030
+symtab = {
+    "LOOP": 0x1003,
+    "ALPHA": 0x1010,
+    "BETA": 0x1020,
+    "TEMP": 0x1030
+}
+# ---------------- H RECORD ----------------
 print("\nH RECORD")
 print("H^" + pname + "^" +
       format(start, '06X') + "^" +
       format(length, '06X'))
-
+# ---------------- SYMBOL TABLE ----------------
 print("\nSYMBOL TABLE")
 print("Symbol\tValue")
-
 for sym, addr in symtab.items():
-    print(sym, "\t", format(addr, '06X'))
+
+    print(sym,
+          "\t",
+          format(addr, '06X'))
+
+# ---------------- E RECORD ----------------
 
 print("\nE RECORD")
+
 print("E^" + format(start, '06X'))
