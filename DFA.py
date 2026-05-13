@@ -42,3 +42,4 @@ else:
         print("State", state, "--", sym, "--> State", state + 1)
 
         state += 1
+        
